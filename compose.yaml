@@ -1,0 +1,19 @@
+services:
+  dev:
+    image: localhost/raccoon-dev
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 1024M
+    build:
+      context: .
+      dockerfile: Containerfile
+    userns_mode: keep-id
+    working_dir: /workspace
+    volumes:
+      - .:/workspace:Z
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+    
