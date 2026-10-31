@@ -2,12 +2,12 @@ FROM docker.io/library/fedora@sha256:43b29f65a41eb9c35e1cd5323e3bdf3b655c2357a9f
 
 USER root
 
-RUN dnf install --assumeyes --setopt=install_weak_deps=False make-1:4.4.1-12.fc44.x86_64 && dnf clean all
-RUN dnf install --assumeyes --setopt=install_weak_deps=False ncurses-6.6-1.fc44.x86_64 && dnf clean all
+RUN dnf install --assumeyes make-1:4.4.1-12.fc44.x86_64 && dnf clean all
+RUN dnf install --assumeyes ncurses-6.6-1.fc44.x86_64 && dnf clean all
 
-RUN dnf install --assumeyes --setopt=install_weak_deps=False golang-1.26.10-1.fc44 && dnf clean all
+RUN dnf install --assumeyes golang-1.26.10-1.fc44 && dnf clean all
 
-RUN dnf install --assumeyes --setopt=install_weak_deps=False nodejs24-24.18.0-1.fc44 && dnf clean all
+RUN dnf install --assumeyes nodejs24-24.18.0-1.fc44 && dnf clean all
 
 RUN useradd --create-home developer
 
