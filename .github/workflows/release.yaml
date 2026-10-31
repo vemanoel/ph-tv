@@ -16,6 +16,7 @@ jobs:
 
     env:
       COMPOSE_FILE: .container/compose.ci.yaml
+      PIPX_BIN_DIR: /home/runner/.local/bin
       PODMAN_COMPOSE_PROVIDER: /home/runner/.local/bin/podman-compose
   
     steps:
@@ -28,13 +29,12 @@ jobs:
       - name: Install podman with socket service
         uses: redhat-actions/podman-install@v1
         with:
-          start-service: 'true'
+          start-service: true
   
       - name: Install podman-compose
         run: |
           sudo apt install --yes pipx
           pipx install podman-compose
-          pipx ensurepath
 
       - name: Build image
         run: podman compose build dev
