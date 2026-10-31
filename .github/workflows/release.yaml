@@ -17,10 +17,12 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
-
-      - name: install podman
-        run: sudo apt install --yes podman
-
+  
+      - name: Install Podman with socket service
+        uses: redhat-actions/podman-install@v1
+        with:
+          start-service: 'true'
+  
       - name: install podman-compose
         run: sudo apt install --yes podman-compose
 
