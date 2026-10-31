@@ -34,7 +34,7 @@ rm -rf cmdline-tools.zip
 rm -rf /var/lib/apt/lists/*
 EOF
 
-# RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
 
 RUN <<EOF
 set -e
