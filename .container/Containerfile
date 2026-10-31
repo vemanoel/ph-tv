@@ -3,9 +3,8 @@ FROM docker.io/library/debian@sha256:2dc419c6d7fe3dad0a2f9fd469c34cc90b0f9ba642d
 USER root
 
 RUN apt install --yes ncurses-bin
+RUN apt install --yes nodejs npm
 RUN apt install --yes openjdk-21-jdk
-
-RUN dnf install --assumeyes nodejs24-24.18.0-1.fc44 && dnf clean all
 
 RUN useradd --create-home developer
 
