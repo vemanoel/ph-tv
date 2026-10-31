@@ -8,5 +8,7 @@ services:
     working_dir: /workspace
     volumes:
       - .:/workspace:Z
+    stdin_open: false
+    tty: false
     command: /bin/bash
     
