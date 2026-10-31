@@ -18,6 +18,12 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
+      - name: install podman
+        run: sudo apt install --yes podman
+
+      - name: install podman-compose
+        run: sudo apt install --yes podman-compose
+
       - name: Build image
         run: podman compose build dev
 
