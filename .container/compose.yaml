@@ -7,12 +7,12 @@ services:
           cpus: 2.0
           memory: 1024M
     build:
-      context: .
-      dockerfile: Containerfile
+      context: ..
+      dockerfile: .container/Containerfile
     userns_mode: keep-id
     working_dir: /workspace
     volumes:
-      - .:/workspace:Z
+      - ..:/workspace:Z
     stdin_open: true
     tty: true
     command: /bin/bash
