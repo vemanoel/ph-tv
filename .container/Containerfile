@@ -47,5 +47,4 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh
 nvm install ${NODE_VERSION}
 EOF
 
-ENV EXPO_NO_CLIENT_ENV_VARS=1
 ENV EXPO_NO_TYPESCRIPT_SETUP=1
