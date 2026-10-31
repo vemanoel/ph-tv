@@ -1,6 +1,9 @@
 export PODMAN_COMPOSE_PROVIDER ?= $(shell command -v podman-compose)
 export COMPOSE_FILE ?= .container/compose.yaml
 
+init:
+	@ podman compose build
+
 run:
 	@ podman compose run -T --rm go run cmd/main.go
 
