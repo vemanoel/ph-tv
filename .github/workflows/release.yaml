@@ -27,9 +27,6 @@ jobs:
   
       - name: Install podman
         run: sudo apt-get install --yes podman=4.9.3+ds1-1ubuntu0.2
-
-      # - name: Start Podman socket
-      #   run: systemctl --user start podman.socket
       
       - name: Install podman-compose
         run: sudo apt-get install --yes podman-compose=1.0.6-1
