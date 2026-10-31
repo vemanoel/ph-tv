@@ -16,8 +16,7 @@ jobs:
 
     env:
       COMPOSE_FILE: .container/compose.ci.yaml
-      PIPX_BIN_DIR: /home/runner/.local/bin
-      PODMAN_COMPOSE_PROVIDER: /home/runner/.local/bin/podman-compose
+      PODMAN_COMPOSE_PROVIDER: /usr/bin/podman-compose
   
     steps:
       - name: Checkout
@@ -32,9 +31,7 @@ jobs:
           start-service: true
   
       - name: Install podman-compose
-        run: |
-          sudo apt-get install --yes pipx
-          pipx install podman-compose
+        run: sudo apt-get install --yes podman-compose
 
       - name: Build image
         run: podman compose build dev
