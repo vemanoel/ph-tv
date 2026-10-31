@@ -2,11 +2,11 @@ services:
   dev:
     image: localhost/raccoon-dev
     build:
-      context: .
-      dockerfile: Containerfile
+      context: ..
+      dockerfile: .container/Containerfile
     working_dir: /workspace
     volumes:
-      - .:/workspace:Z
+      - ..:/workspace:Z
     stdin_open: false
     tty: false
     command: /bin/bash
