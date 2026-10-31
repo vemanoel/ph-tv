@@ -1,12 +1,50 @@
 FROM docker.io/library/debian@sha256:2dc419c6d7fe3dad0a2f9fd469c34cc90b0f9ba642d8fde837fe3d7d34a0e7f1
 
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+ENV ANDROID_HOME=${HOME}/Android/Sdk
+
 USER root
 
-RUN apt-get update
+RUN <<EOF
+set -e
 
-RUN apt-get install --yes ncurses-bin
-RUN apt-get install --yes nodejs npm
-RUN apt-get install --yes openjdk-21-jdk
+apt-get update --yes
+
+apt-get install --yes --no-install-recommends ncurses-bin
+apt-get install --yes --no-install-recommends curl
+apt-get install --yes --no-install-recommends unzip
+
+rm -rf /var/lib/apt/lists/*
+EOF
+
+RUN <<EOF
+set -e
+
+apt-get update --yes
+
+apt-get install --yes --no-install-recommends openjdk-21-jdk
+
+mkdir -p ${ANDROID_HOME}/cmdline-tools
+curl -fsSL https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip -o cmdline-tools.zip
+unzip -q cmdline-tools.zip
+mv cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest
+rm -rf cmdline-tools.zip
+
+rm -rf /var/lib/apt/lists/*
+EOF
+
+# RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+RUN <<EOF
+set -e
+
+apt-get update --yes
+
+apt-get install --yes --no-install-recommends nodejs
+apt-get install --yes --no-install-recommends npm
+
+rm -rf /var/lib/apt/lists/*
+EOF
 
 RUN useradd --create-home developer
 
