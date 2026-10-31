@@ -19,7 +19,7 @@ jobs:
           fetch-tags: true
 
       - name: Build image
-        run: podman compose build development
+        run: podman compose build dev
 
       - name: Build artifacts
         run: |
