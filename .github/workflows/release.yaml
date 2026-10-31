@@ -20,13 +20,13 @@ jobs:
   
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
           fetch-tags: true
   
       - name: Install podman with socket service
-        uses: redhat-actions/podman-install@v1
+        uses: redhat-actions/podman-install@v1.1.1
         with:
           start-service: true
   
@@ -39,9 +39,9 @@ jobs:
       - name: Build artifacts
         run: make build
 
-      - uses: softprops/action-gh-release@v3
+      - uses: softprops/action-gh-release@v3.0.3
         with:
           files: build/*
           generate_release_notes: true
-          tag_name: v0.0.0
+          tag_name: v${{ inputs.version }}
   
