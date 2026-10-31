@@ -6,6 +6,7 @@ services:
         limits:
           cpus: 2.0
           memory: 1024M
+    privileged: true
     ports:
       - "8081:8081"
     build:
