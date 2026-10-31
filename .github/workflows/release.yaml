@@ -15,8 +15,8 @@ jobs:
       contents: write
 
     env:
-      COMPOSE_FILE: compose.ci.yaml
-      PODMAN_COMPOSE_PROVIDER: /usr/bin/podman-compose
+      COMPOSE_FILE: .container/compose.ci.yaml
+      PODMAN_COMPOSE_PROVIDER: /home/runner/.local/bin/podman-compose
   
     steps:
       - name: Checkout
@@ -25,13 +25,16 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
   
-      - name: Install Podman with socket service
+      - name: Install podman with socket service
         uses: redhat-actions/podman-install@v1
         with:
           start-service: 'true'
   
-      - name: install podman-compose
-        run: sudo apt install --yes podman-compose
+      - name: Install podman-compose
+        run: |
+          sudo apt install --yes pipx
+          pipx install podman-compose
+          pipx ensurepath
 
       - name: Build image
         run: podman compose build dev
