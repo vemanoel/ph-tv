@@ -15,6 +15,7 @@ jobs:
       contents: write
 
     env:
+      COMPOSE_FILE: compose.ci.yaml
       PODMAN_COMPOSE_PROVIDER: /usr/bin/podman-compose
   
     steps:
