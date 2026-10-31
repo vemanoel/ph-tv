@@ -1,3 +1,5 @@
+export COMPOSE_FILE := .container/compose.yaml
+
 run:
 	@ podman compose run --rm go run cmd/main.go
 
