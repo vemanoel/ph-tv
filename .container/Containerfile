@@ -7,5 +7,7 @@ RUN dnf install --assumeyes --setopt=install_weak_deps=False ncurses-6.6-1.fc44.
 RUN dnf install --assumeyes --setopt=install_weak_deps=False golang-1.26.10-1.fc44 && dnf clean all
 
 RUN useradd --create-home developer
+
 USER developer
-WORKDIR /home/developer/app
+
+# WORKDIR /home/developer/app
