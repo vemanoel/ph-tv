@@ -30,7 +30,7 @@ jobs:
         run: podman compose build dev
 
       - name: Build artifacts
-        run: podman compose run --rm dev make build
+        run: make build
 
       - uses: softprops/action-gh-release@v3
         with:
