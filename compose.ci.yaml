@@ -1,0 +1,12 @@
+services:
+  dev:
+    image: localhost/raccoon-dev
+    build:
+      context: .
+      dockerfile: Containerfile
+    userns_mode: keep-id
+    working_dir: /workspace
+    volumes:
+      - .:/workspace:Z
+    command: /bin/bash
+    
