@@ -25,13 +25,14 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
   
-      - name: Install podman with socket service
-        uses: redhat-actions/podman-install@v1.1.1
-        with:
-          start-service: true
-  
+      - name: Install podman
+        run: sudo apt-get install --yes podman-compose=4.9.3
+
+      - name: Start Podman socket
+        run: systemctl --user start podman.socket
+      
       - name: Install podman-compose
-        run: sudo apt-get install --yes podman-compose
+        run: sudo apt-get install --yes podman-compose=1.0.6-1
 
       - name: Build image
         run: podman compose build dev
