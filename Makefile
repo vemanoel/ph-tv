@@ -1,4 +1,7 @@
-build_all:
+run:
+  @ podman compose run --rm go run cmd/main.go
+
+build:
   @ podman compose run --rm -e GOOS=darwin -e GOARCH=amd64 dev go build -ldflags "-s -w" -o build/darwin-amd64 cmd/main.go
   @ podman compose run --rm -e GOOS=darwin -e GOARCH=arm64 dev go build -ldflags "-s -w" -o build/darwin-arm64 cmd/main.go
   @ podman compose run --rm -e GOOS=linux -e GOARCH=amd64 dev go build -ldflags "-s -w" -o build/linux-amd64 cmd/main.go
