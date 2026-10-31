@@ -33,7 +33,7 @@ jobs:
   
       - name: Install podman-compose
         run: |
-          sudo apt install --yes pipx
+          sudo apt-get install --yes pipx
           pipx install podman-compose
 
       - name: Build image
