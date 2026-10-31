@@ -13,7 +13,8 @@ rm -rf /var/lib/apt/lists/*
 EOF
 
 ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-ENV ANDROID_HOME=${HOME}/Android/Sdk
+ENV ANDROID_HOME=/opt/android-sdk
+ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools
 RUN <<EOF
 set -e
