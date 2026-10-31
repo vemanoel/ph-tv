@@ -1,11 +1,5 @@
 FROM docker.io/library/debian@sha256:2dc419c6d7fe3dad0a2f9fd469c34cc90b0f9ba642d8fde837fe3d7d34a0e7f1
 
-ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-ENV ANDROID_HOME=${HOME}/Android/Sdk
-ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools
-
-USER root
-
 RUN <<EOF
 set -e
 
@@ -18,6 +12,9 @@ apt-get install --yes --no-install-recommends unzip
 rm -rf /var/lib/apt/lists/*
 EOF
 
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+ENV ANDROID_HOME=${HOME}/Android/Sdk
+ENV PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools
 RUN <<EOF
 set -e
 
@@ -36,17 +33,13 @@ EOF
 
 RUN yes | sdkmanager --licenses && sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
 
+ENV NODE_VERSION=26.13.0
+ENV NVM_VERSION=0.40.0
+ENV NVM_DIR=/root/.nvm
+ENV PATH=${NVM_DIR}/versions/node/v${NODE_VERSION}/bin
 RUN <<EOF
 set -e
 
-apt-get update --yes
-
-apt-get install --yes --no-install-recommends nodejs
-apt-get install --yes --no-install-recommends npm
-
-rm -rf /var/lib/apt/lists/*
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{NVM_VERSION}/install.sh | bash
+nvm install ${NODE_VERSION}
 EOF
-
-RUN useradd --create-home developer
-
-USER developer
