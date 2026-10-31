@@ -12,7 +12,6 @@ services:
     build:
       context: ..
       dockerfile: .container/Containerfile
-    userns_mode: keep-id
     working_dir: /workspace
     volumes:
       - ..:/workspace:Z
