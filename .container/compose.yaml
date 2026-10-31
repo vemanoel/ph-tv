@@ -5,7 +5,7 @@ services:
       resources:
         limits:
           cpus: 2.0
-          memory: 1024M
+          memory: 8G
     privileged: true
     ports:
       - "8081:8081"
