@@ -1,11 +1,14 @@
 export PODMAN_COMPOSE_PROVIDER ?= $(shell command -v podman-compose)
 export COMPOSE_FILE ?= .container/compose.yaml
 
-init:
-	@ podman compose build
+up:
+	@ podman compose up --detach
 
-run:
-	@ podman compose run -T --rm dev $(ARGS)
+down:
+	@ podman compose down
+
+shell:
+	@ podman compose exec dev bash
 
 build:
 	@ mkdir -p build
